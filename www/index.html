@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SamaContact</title>
+    <link rel="stylesheet" href="lib/jquery.mobile-1.4.5.min.css">
+    <link rel="stylesheet" href="css/index.css">
+    <script src="lib/jquery.min.js"></script>
+    <script src="lib/jquery.mobile-1.4.5.min.js"></script>
+    <script src="cordova.js"></script>
+    <script src="js/index.js"></script>
+</head>
+
+<body>
+    <!-- Page principale -->
+    <div id="homePage" data-role="page">
+        <div data-role="header" data-theme="b">
+            <h1>SamaContact</h1>
+            <a href="#" data-role="button" data-icon="refresh" data-iconpos="notext" onclick="loadContacts()"></a>
+        </div>
+
+        <div role="main" class="ui-content">
+            <div class="search-bar">
+                <input type="search" id="searchInput" placeholder="Rechercher un contact..." onkeyup="searchContacts()">
+            </div>
+
+            <a href="#addContact" data-role="button" data-icon="plus">Ajouter un Contact</a>
+
+            <ul id="contactList" data-role="listview" data-inset="true" data-filter="true">
+                <!-- Les contacts seront chargés ici dynamiquement -->
+            </ul>
+        </div>
+
+        <div data-role="footer" data-position="fixed">
+            <h1>M1IA &copy; 2025</h1>
+        </div>
+    </div>
+
+    <!-- Page de détails du contact -->
+    <div id="detailContactPage" data-role="page">
+        <div data-role="header" data-theme="b">
+            <a href="#homePage" data-role="button" data-icon="arrow-l" data-iconpos="notext"></a>
+            <h1>Détails du contact</h1>
+            <a href="#editContact" data-role="button" data-icon="edit" data-iconpos="notext"
+                onclick="prepareEditContact()"></a>
+        </div>
+
+        <div role="main" class="ui-content">
+            <div id="contactDetails">
+                <!-- Les détails du contact seront chargés ici dynamiquement -->
+            </div>
+        </div>
+
+        <div data-role="footer" data-position="fixed">
+            <h1>M1IA &copy; 2025</h1>
+        </div>
+    </div>
+
+    <!-- Page d'ajout de contact -->
+    <div id="addContact" data-role="page">
+        <div data-role="header" data-theme="b">
+            <a href="#homePage" data-role="button" data-icon="arrow-l" data-iconpos="notext"></a>
+            <h1>Ajouter un contact</h1>
+        </div>
+
+        <div role="main" class="ui-content">
+            <form id="addContactForm">
+                <div data-role="fieldcontain">
+                    <label for="addName">Nom complet</label>
+                    <input type="text" id="addName" placeholder="Nom complet" required>
+                </div>
+                <div data-role="fieldcontain">
+                    <label for="addPhone">Téléphone</label>
+                    <input type="tel" id="addPhone" placeholder="Téléphone" required>
+                </div>
+                <div data-role="fieldcontain">
+                    <label for="addEmail">Email</label>
+                    <input type="email" id="addEmail" placeholder="Email">
+                </div>
+                <div data-role="fieldcontain">
+                    <label for="addOrganization">Organisation</label>
+                    <input type="text" id="addOrganization" placeholder="Entreprise">
+                </div>
+
+                <button type="button" data-theme="b" onclick="saveNewContact()">Enregistrer</button>
+            </form>
+        </div>
+
+        <div data-role="footer" data-position="fixed">
+            <h1>M1IA &copy; 2025</h1>
+        </div>
+    </div>
+
+    <!-- Page de modification de contact -->
+    <div id="editContact" data-role="page">
+        <div data-role="header" data-theme="b">
+            <a href="#detailContactPage" data-role="button" data-icon="arrow-l" data-iconpos="notext"></a>
+            <h1>Modifier contact</h1>
+        </div>
+
+        <div role="main" class="ui-content">
+            <form id="editContactForm">
+                <div data-role="fieldcontain">
+                    <label for="editName">Nom complet</label>
+                    <input type="text" id="editName" placeholder="Nom complet" required>
+                </div>
+                <div data-role="fieldcontain">
+                    <label for="editPhone">Téléphone</label>
+                    <input type="tel" id="editPhone" placeholder="Téléphone" required>
+                </div>
+                <div data-role="fieldcontain">
+                    <label for="editEmail">Email</label>
+                    <input type="email" id="editEmail" placeholder="Email">
+                </div>
+                <div data-role="fieldcontain">
+                    <label for="editOrganization">Organisation</label>
+                    <input type="text" id="editOrganization" placeholder="Entreprise">
+                </div>
+
+                <button type="button" data-theme="b" onclick="saveEditedContact()">Enregistrer</button>
+                <button type="button" data-theme="a" onclick="confirmDeleteContact()">Supprimer</button>
+            </form>
+        </div>
+
+        <div data-role="footer" data-position="fixed">
+            <h1>M1IA &copy; 2025</h1>
+        </div>
+    </div>
+</body>
+
+</html>
